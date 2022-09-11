@@ -1,26 +1,22 @@
 import { json } from "body-parser";
 import express from "express";
 import mongoose from "mongoose";
+import { env } from "../env";
 import { routerChooser } from "./routes/router-chooser";
 
 const app = express();
 app.use(json());
 app.use(routerChooser);
 
-const DB_HOST = "guilhermeamorim";
-const SECRET_KEY = "rJTUXt7iKn5rr!6";
-const DB_CLUSTER = "cluster0.5zfqrm3.mongodb.net";
-const DB_DATA = "alura-node";
-
 const urlConnection =
     "mongodb+srv://" +
-    DB_HOST +
+    env.DB_HOST +
     ":" +
-    SECRET_KEY +
+    env.SECRET_KEY +
     "@" +
-    DB_CLUSTER +
+    env.DB_CLUSTER +
     "/" +
-    DB_DATA;
+    env.DB_DATA;
 
 mongoose.connect(urlConnection);
 
